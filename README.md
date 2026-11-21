@@ -62,35 +62,56 @@ An illustrative route for a feature large enough to need every step. You can ent
 
 Open a skill to read its triggers and boundaries.
 
-| Group | Skill | What it does |
-| --- | --- | --- |
-| **Coordinate and set up** | [hub-workflow](skills/hub-workflow/SKILL.md) | Routes a task to the shortest suitable path |
-| | [setup-matt-pocock-skills](skills/setup-matt-pocock-skills/SKILL.md) | Records a project's tracker, domain docs and real verification commands (you invoke it) |
-| | [delegate-setup](skills/delegate-setup/SKILL.md) | Configures which agent handles which kind of work |
-| **Decide and plan** | [grill-me-code](skills/grill-me-code/SKILL.md) | Stress-tests a technical plan; saves terms and decisions |
-| | [wayfinder](skills/wayfinder/SKILL.md) | Maps interdependent decisions across sessions |
-| | [prototype](skills/prototype/SKILL.md) | Disposable experiment that answers a behavior or UI question |
-| | [to-spec](skills/to-spec/SKILL.md) | Turns an agreement into a concise spec |
-| | [to-tickets](skills/to-tickets/SKILL.md) | Splits a spec into verifiable tickets with blockers |
-| **Shape architecture** | [improve-codebase-architecture](skills/improve-codebase-architecture/SKILL.md) | Finds friction that has real maintenance cost |
-| | [codebase-design](skills/codebase-design/SKILL.md) | Picks simple interfaces that serve real behavior |
-| **Diagnose and build** | [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) | Evidence-first diagnosis that keeps the results of each attempt |
-| | [tdd](skills/tdd/SKILL.md) | Failing behavior test first, then the code that passes it |
-| | [codex-delegate](skills/codex-delegate/SKILL.md) · [claude-delegate](skills/claude-delegate/SKILL.md) · [agy-delegate](skills/agy-delegate/SKILL.md) | Authorized hand-off of a bounded task to another agent, then review of the result |
-| **Review the result** | [clean-code-guard](skills/clean-code-guard/SKILL.md) | Production code quality and generated-code failure modes |
-| | [test-guard](skills/test-guard/SKILL.md) | Test quality; guards against weakened coverage |
-| | [docs-guard](skills/docs-guard/SKILL.md) | Documentation matches the source |
-| | [wp-guard](skills/wp-guard/SKILL.md) · [woo-guard](skills/woo-guard/SKILL.md) | WordPress and WooCommerce rules |
-| | [debate-review](skills/debate-review/SKILL.md) | Two independent reviewers, then adjudication (on request or project policy) |
-| **Build and check UI** | [ui-engineering](skills/ui-engineering/SKILL.md) | From user goal to a UI that has been looked at in a browser |
-| | [ui-design-system](skills/ui-design-system/SKILL.md) | Extracts and extends shared tokens and components |
-| | [ui-guard](skills/ui-guard/SKILL.md) | Evidence-based UI review and an audit record |
-| | [ui-e2e-tests](skills/ui-e2e-tests/SKILL.md) | Real-browser flow, screenshot and accessibility tests |
-| | [frontend-design](skills/frontend-design/SKILL.md) | Visual direction for new or redesigned UI |
-| **Support the work** | [research](skills/research/SKILL.md) | Primary-source research with written findings |
-| | [handoff](skills/handoff/SKILL.md) | Carries context to another session (you invoke it) |
-| | [resolving-merge-conflicts](skills/resolving-merge-conflicts/SKILL.md) | Resolves an in-progress conflict, keeping both sides' intent |
-| | [writing-for-agents](skills/writing-for-agents/SKILL.md) | Writes clear instructions for agents (skills, AGENTS.md) |
+**Coordinate and set up**
+
+- [hub-workflow](skills/hub-workflow/SKILL.md): routes a task to the shortest suitable path
+- [setup-matt-pocock-skills](skills/setup-matt-pocock-skills/SKILL.md): records a project's tracker, domain docs and real verification commands (you invoke it)
+- [delegate-setup](skills/delegate-setup/SKILL.md): configures which agent handles which kind of work
+
+**Decide and plan**
+
+- [grill-me-code](skills/grill-me-code/SKILL.md): stress-tests a technical plan; saves terms and decisions
+- [wayfinder](skills/wayfinder/SKILL.md): maps interdependent decisions across sessions
+- [prototype](skills/prototype/SKILL.md): disposable experiment that answers a behavior or UI question
+- [to-spec](skills/to-spec/SKILL.md): turns an agreement into a concise spec
+- [to-tickets](skills/to-tickets/SKILL.md): splits a spec into verifiable tickets with blockers
+
+**Shape architecture**
+
+- [improve-codebase-architecture](skills/improve-codebase-architecture/SKILL.md): finds friction that has real maintenance cost
+- [codebase-design](skills/codebase-design/SKILL.md): picks simple interfaces that serve real behavior
+
+**Diagnose and build**
+
+- [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md): evidence-first diagnosis that keeps the results of each attempt
+- [tdd](skills/tdd/SKILL.md): failing behavior test first, then the code that passes it
+- [codex-delegate](skills/codex-delegate/SKILL.md): authorized hand-off of a bounded task to Codex, then review of the result
+- [claude-delegate](skills/claude-delegate/SKILL.md): the same, to another Claude Code process
+- [agy-delegate](skills/agy-delegate/SKILL.md): the same, to Antigravity
+
+**Review the result**
+
+- [clean-code-guard](skills/clean-code-guard/SKILL.md): production code quality and generated-code failure modes
+- [test-guard](skills/test-guard/SKILL.md): test quality; guards against weakened coverage
+- [docs-guard](skills/docs-guard/SKILL.md): documentation matches the source
+- [wp-guard](skills/wp-guard/SKILL.md): WordPress rules
+- [woo-guard](skills/woo-guard/SKILL.md): WooCommerce rules
+- [debate-review](skills/debate-review/SKILL.md): two independent reviewers, then adjudication (on request or project policy)
+
+**Build and check UI**
+
+- [ui-engineering](skills/ui-engineering/SKILL.md): from user goal to a UI that has been looked at in a browser
+- [ui-design-system](skills/ui-design-system/SKILL.md): extracts and extends shared tokens and components
+- [ui-guard](skills/ui-guard/SKILL.md): evidence-based UI review and an audit record
+- [ui-e2e-tests](skills/ui-e2e-tests/SKILL.md): real-browser flow, screenshot and accessibility tests
+- [frontend-design](skills/frontend-design/SKILL.md): visual direction for new or redesigned UI
+
+**Support the work**
+
+- [research](skills/research/SKILL.md): primary-source research with written findings
+- [handoff](skills/handoff/SKILL.md): carries context to another session (you invoke it)
+- [resolving-merge-conflicts](skills/resolving-merge-conflicts/SKILL.md): resolves an in-progress conflict, keeping both sides' intent
+- [writing-for-agents](skills/writing-for-agents/SKILL.md): writes clear instructions for agents (skills, AGENTS.md)
 
 Install the cooperating skills together for the full workflow; any single skill also works on its own. The UI skills have their own [operator guide](docs/ui-engineering.md). The [authoring template](templates/skill-template/) is scaffolding, not an installed skill.
 
