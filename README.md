@@ -1,40 +1,98 @@
-# skills-g-hub
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/assets/hero-dark.svg">
+    <img src="docs/assets/hero-light.svg" alt="skills-g-hub: one workflow from idea to verified change. Six stages light up in order: Settle the plan (grill-me-code), Spec (to-spec), Tickets (to-tickets), Build (tdd and delegates), Review (guard skills), Verified (you decide)." width="800">
+  </picture>
+</p>
 
-Shared skills hub for coding agents (Claude Code, Codex, Antigravity, …): the software-development workflow and the skills it connects.
+**skills-g-hub is a shared set of 30 skills that give your coding agent a repeatable way to take a software change from idea to verified result: settle the plan, write it down, build it, review it.** It works in Claude Code, Codex and Antigravity.
 
-It holds two kinds of skills in one installable package:
+At the center is **[`hub-workflow`](skills/hub-workflow/SKILL.md)**, a router skill. It looks at what you asked for and picks the shortest route through the other skills: a one-line fix goes straight to build and review, an unsettled feature is questioned, specced and sliced into tickets first. **It is conditional guidance, not an automation engine.**
 
-- **Local** — skills written or adapted here, maintained here.
-- **Vendored** — upstream skills copied in from other repos, refreshed on demand.
+[Why](#why-a-workflow-not-just-a-prompt) · [Routes](#one-router-many-routes) · [Journey](#a-feature-start-to-finish) · [In practice](#what-it-looks-like-in-practice) · [Skills](#the-30-skills) · [Install](#install) · [Trust](#trust-limits-and-what-to-read-first)
 
-## Layout
+```bash
+npx skills add Hesham-14/skills-g-hub --global --agent claude-code --agent codex --agent antigravity-cli --skill '*' -y
+```
 
-`skills/<name>/SKILL.md` is each skill's entrypoint. References, assets, scripts
-and optional agent metadata live within its folder.
+## Why a workflow, not just a prompt
 
-| Area | Skills |
+Coding agents can write a diff and still lose the original intent. This hub gives them a route and a way to check the result.
+
+| Without a workflow | With skills-g-hub |
 | --- | --- |
-| Coordination and setup | hub-workflow, setup-matt-pocock-skills, delegate-setup |
-| Planning and architecture | grill-me-code, wayfinder, to-spec, to-tickets, prototype, improve-codebase-architecture, codebase-design |
-| Diagnosis and implementation | diagnosing-bugs, tdd, codex-delegate, claude-delegate, agy-delegate |
-| Review | clean-code-guard, test-guard, docs-guard, wp-guard, woo-guard, debate-review |
-| UI engineering | ui-engineering, ui-design-system, ui-guard, ui-e2e-tests ([guide](docs/ui-engineering.md)) |
-| Supporting tools | frontend-design, research, handoff, resolving-merge-conflicts, writing-for-agents |
-| Authoring | `templates/skill-template` (not installed as a skill) |
+| The agent starts coding from a half-formed plan. | An unsettled plan is questioned first. Agreed terms and important decisions are saved, with their reasons. |
+| A big feature arrives as one giant diff. | A spec, then verifiable tickets with acceptance criteria and blockers. |
+| "The tests pass" is taken on faith. | Review compares the diff to the ticket, re-runs the project's real gates and applies the guard that matches what changed. Delegated work is verified independently. |
+| UI ships unseen. | UI review needs rendered evidence per viewport and theme. A check that did not run is recorded as not run, never as passed. |
+| The agent quietly does more than you asked. | Delegating to another agent, posting review comments, pushing and merging are separate actions that only happen within what you authorized. Missing skills are reported, never installed silently. |
 
-See [the workflow map and connection rules](docs/workflow.md) for routes,
-conditions, setup, and the difference between guidance and automation.
+## One router, many routes
 
-- `vendor.json` / `vendor.lock.json`: upstream folders owned by the sync.
-- `local-sources.json`: exact source pins for local adaptations; manual updates.
-- `scripts/sync-vendor.sh`: refresh only vendor-owned folders.
-- `tests/debate-review.test.mjs`: offline integration checks for the local reviewer.
-- `tests/ui-audit.test.mjs`, `tests/ui-workflow.test.mjs`: the UI audit recorder, browser
-  capture, UI skill structure and routing; fixtures under `tests/ui-workflow/`.
+`hub-workflow` does not run a fixed pipeline. It reads the situation and sends the task down the route that fits.
 
-A folder not listed in `vendor.json` is never touched by the sync. The local
-workflow layer connects unchanged vendored delegates and guards; it does not
-modify installed agent copies.
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/route-dark.svg">
+  <img src="docs/assets/route-light.svg" alt="A task enters hub-workflow, which picks a route: grill-me-code for an unsettled plan, wayfinder for many decisions across sessions, prototype for a runnable design question, diagnosing-bugs for a recurring bug, to-spec then to-tickets for a large agreed feature, tdd then build for a ready ticket, ui-engineering for screens. Every route ends in review with clean-code-guard, test-guard, docs-guard, ui-guard, wp-guard and woo-guard as relevant, optionally debate-review, and a verified result that you decide what to do with." width="760">
+</picture>
+
+**Guidance, not a scheduler.** The connections between skills are instructions the agent follows when their condition holds. Nothing runs in the background, and a connection is never permission to publish, merge or delegate. Planning-only requests end with planning, and direct implementation is the default. The full map, with every condition, is in [docs/workflow.md](docs/workflow.md).
+
+## A feature, start to finish
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/journey-dark.svg">
+  <img src="docs/assets/journey-light.svg" alt="Seven steps, each leaving an artifact: 1 settle the plan with grill-me-code (glossary and decisions); 2 write the agreement with to-spec (spec); 3 slice into tickets with to-tickets (tickets); 4 build with tdd, or delegate to codex-delegate, claude-delegate or agy-delegate if you authorize it (diff); 5 review with clean-code-guard, test-guard and ui-guard (findings); 6 an optional independent second opinion with debate-review (verdict); 7 a verified result, with commit, push and merge left to you." width="760">
+</picture>
+
+An illustrative route for a feature large enough to need every step. You can enter at any step: with a spec already written, start at the tickets; if you only want a review, ask for a review. The moving highlight shows the hand-off of context, not background execution.
+
+## What it looks like in practice
+
+| You say | What the hub guides |
+| --- | --- |
+| "Add CSV export to the reports page. We haven't decided how big exports should work." | The plan is unsettled, so `grill-me-code` questions it and saves the decisions. Once it is agreed and too big for one change, `to-spec` then `to-tickets`. Each ticket is built with `tdd` and reviewed. |
+| "This job fails every few days and nobody knows why." | `diagnosing-bugs` reproduces it first and keeps a record of eliminated hypotheses. The fix reuses that evidence, and `tdd` adds the regression test. |
+| "Build the new settings screen." | `ui-engineering` sets how much process the task deserves. The result is looked at in a real browser per viewport and theme, then `ui-guard` reviews it with that evidence. A significant flow gets a browser test from `ui-e2e-tests`. |
+| "Have Codex build this, then review it." | With your authorization, `codex-delegate` hands over a bounded brief. The returned diff is checked against the ticket and the gates are re-run before anything is accepted. |
+| "Review this branch and get a second opinion before I merge." | The matching guards run on what changed. `debate-review` adds two independent reviewers and an adjudication because you asked for it. It needs reviewer lanes set up with `delegate-setup`. |
+| "Fix the typo in the header." | No workflow at all: a small edit needs no coordination, so the agent just edits and checks it. |
+
+## The 30 skills
+
+Open a skill to read its triggers and boundaries.
+
+| Group | Skill | What it does |
+| --- | --- | --- |
+| **Coordinate and set up** | [hub-workflow](skills/hub-workflow/SKILL.md) | Routes a task to the shortest suitable path |
+| | [setup-matt-pocock-skills](skills/setup-matt-pocock-skills/SKILL.md) | Records a project's tracker, domain docs and real verification commands (you invoke it) |
+| | [delegate-setup](skills/delegate-setup/SKILL.md) | Configures which agent handles which kind of work |
+| **Decide and plan** | [grill-me-code](skills/grill-me-code/SKILL.md) | Stress-tests a technical plan; saves terms and decisions |
+| | [wayfinder](skills/wayfinder/SKILL.md) | Maps interdependent decisions across sessions |
+| | [prototype](skills/prototype/SKILL.md) | Disposable experiment that answers a behavior or UI question |
+| | [to-spec](skills/to-spec/SKILL.md) | Turns an agreement into a concise spec |
+| | [to-tickets](skills/to-tickets/SKILL.md) | Splits a spec into verifiable tickets with blockers |
+| **Shape architecture** | [improve-codebase-architecture](skills/improve-codebase-architecture/SKILL.md) | Finds friction that has real maintenance cost |
+| | [codebase-design](skills/codebase-design/SKILL.md) | Picks simple interfaces that serve real behavior |
+| **Diagnose and build** | [diagnosing-bugs](skills/diagnosing-bugs/SKILL.md) | Evidence-first diagnosis that keeps the results of each attempt |
+| | [tdd](skills/tdd/SKILL.md) | Failing behavior test first, then the code that passes it |
+| | [codex-delegate](skills/codex-delegate/SKILL.md) · [claude-delegate](skills/claude-delegate/SKILL.md) · [agy-delegate](skills/agy-delegate/SKILL.md) | Authorized hand-off of a bounded task to another agent, then review of the result |
+| **Review the result** | [clean-code-guard](skills/clean-code-guard/SKILL.md) | Production code quality and generated-code failure modes |
+| | [test-guard](skills/test-guard/SKILL.md) | Test quality; guards against weakened coverage |
+| | [docs-guard](skills/docs-guard/SKILL.md) | Documentation matches the source |
+| | [wp-guard](skills/wp-guard/SKILL.md) · [woo-guard](skills/woo-guard/SKILL.md) | WordPress and WooCommerce rules |
+| | [debate-review](skills/debate-review/SKILL.md) | Two independent reviewers, then adjudication (on request or project policy) |
+| **Build and check UI** | [ui-engineering](skills/ui-engineering/SKILL.md) | From user goal to a UI that has been looked at in a browser |
+| | [ui-design-system](skills/ui-design-system/SKILL.md) | Extracts and extends shared tokens and components |
+| | [ui-guard](skills/ui-guard/SKILL.md) | Evidence-based UI review and an audit record |
+| | [ui-e2e-tests](skills/ui-e2e-tests/SKILL.md) | Real-browser flow, screenshot and accessibility tests |
+| | [frontend-design](skills/frontend-design/SKILL.md) | Visual direction for new or redesigned UI |
+| **Support the work** | [research](skills/research/SKILL.md) | Primary-source research with written findings |
+| | [handoff](skills/handoff/SKILL.md) | Carries context to another session (you invoke it) |
+| | [resolving-merge-conflicts](skills/resolving-merge-conflicts/SKILL.md) | Resolves an in-progress conflict, keeping both sides' intent |
+| | [writing-for-agents](skills/writing-for-agents/SKILL.md) | Writes clear instructions for agents (skills, AGENTS.md) |
+
+Install the cooperating skills together for the full workflow; any single skill also works on its own. The UI skills have their own [operator guide](docs/ui-engineering.md). The [authoring template](templates/skill-template/) is scaffolding, not an installed skill.
 
 ## Install
 
@@ -42,132 +100,35 @@ modify installed agent copies.
 npx skills add Hesham-14/skills-g-hub --global --agent claude-code --agent codex --agent antigravity-cli --skill '*' -y
 ```
 
-`--agent` takes **one agent per flag** — a comma-separated list is rejected as invalid, and
-the error prints the full roster of ~75 supported agents. Name the agents actually in use;
-`--agent '*'` installs to every one of them.
+`--agent` takes one agent per flag; a comma-separated list is rejected. Name the agents you use, or pass `--agent '*'` for every supported one. For a smaller install, replace `--skill '*'` with the skills you want, for example `--skill hub-workflow --skill tdd`.
 
-The content lands once in `~/.agents/skills/`, the shared location Codex and Antigravity CLI
-read directly. Claude Code gets symlinks into it from `~/.claude/skills/`, so all three read
-one copy — but that copy is **independent of this repo**. Editing a skill here changes
-nothing until the command is run again.
+The content lands once in `~/.agents/skills/`, which Codex and Antigravity CLI read directly. Claude Code gets symlinks from `~/.claude/skills/`. That copy is independent of this repository: run the command again to update. Installing skills does not install or sign in the implementer CLIs, browsers or model accounts they use.
 
-After installation, run `setup-matt-pocock-skills` in a project to write
-`docs/agents/`: issue tracker, domain layout, and the repo's real verification
-commands. It also writes a triage label vocabulary, but only when a `triage`
-skill is installed alongside it, which this hub does not carry. Run it again
-later and it checks the existing setup instead of replacing it, showing a diff
-before touching any file that is already there. It does not install skills into
-either runtime.
+**Then, in each project**, run `setup-matt-pocock-skills` yourself. It explores the repo, shows what it found, and after you confirm writes `docs/agents/` with the issue tracker, domain layout and the project's real build, test and run commands. `hub-workflow` reads that file. Run it again later and it checks the existing setup and shows a diff before changing anything.
 
-Before pushing, list local discovery without installing:
+**Then just ask.** For example: "Use hub-workflow to plan and build saved searches, and check the result against the agreed criteria." Invocation syntax depends on your runtime, and you do not have to name the skills.
 
-```bash
-npx skills add . --list --full-depth
-```
+Requirements: Node 18+ for the scripts and offline tests. `ui-guard`'s browser capture needs Node 22+ and an installed Chrome, Chromium or Edge; without them agents report rendered checks as unavailable. Details are in [docs/maintaining.md](docs/maintaining.md#requirements).
 
-## Adding a skill
+## Trust, limits and what to read first
 
-```bash
-cp -R templates/skill-template skills/my-new-skill
-mv skills/my-new-skill/SKILL.md.template skills/my-new-skill/SKILL.md
-```
+- **Skills are instructions.** The text of a `SKILL.md` is what the agent obeys, so read what you install. Markdown is inspectable, not a safety guarantee. [SKILL-SAFETY.md](SKILL-SAFETY.md) is the vetting checklist and the record of what was audited and removed.
+- **Some skills ship scripts.** 17 Node scripts (Node built-ins only): the delegate relays, the `debate-review` runner, and two UI helpers (`capture.mjs`, `ui-audit.mjs`). The delegates launch the agent CLI you already have installed. `debate-review` keeps clones and artifacts in `~/.cache/debate-review/` and, for pull requests, calls your own `gh`, `glab` or `az` CLI (`az` supplies an Azure token). Each script is covered in SKILL-SAFETY.md.
+- **Updates have a review boundary.** The vendor sync flags non-documentation content in upstream sources but does not decide whether it is safe; a person reads it. Local adaptations are updated by hand.
+- **You stay in control.** Delegation, posting review comments, pushing and merging only happen within what you authorized. Nothing is installed or configured silently.
+- **Honest limits.** The workflow is guidance, so an agent can still skip a step. No time or cost savings are claimed. The offline tests check the tooling and routing contracts, not model quality. Live activation of the UI skills was measured on Claude Code only; Codex and Antigravity were not measured. `debate-review` needs authenticated reviewer agents set up first. UI screenshots can contain application data, so keep audit artifacts out of Git.
 
-Then set `name:` in the frontmatter to `my-new-skill` (it must match the folder), and
-write a `description:` precise enough that the agent knows when to fire it — including
-a `DO NOT USE for …` clause. That description is the whole activation mechanism.
+## Credits and licences
 
-Keep `SKILL.md` short. Deep material goes in `references/*.md`, which the agent loads
-only when the task calls for it.
+Most of the hub is adapted from open-source skill sets. Their licences are kept alongside the code and in [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md):
 
-## Updating vendored skills
+- [mattpocock/skills](https://github.com/mattpocock/skills): the planning and implementation skills
+- [amElnagdy/guard-skills](https://github.com/amElnagdy/guard-skills), [delegate-skills](https://github.com/amElnagdy/delegate-skills) and [review-skills](https://github.com/amElnagdy/review-skills): the review guards, delegates and `debate-review`
+- [anthropics/skills](https://github.com/anthropics/skills): `frontend-design`
+- [Vercel web-interface-guidelines](https://github.com/vercel-labs/web-interface-guidelines), [Vercel agent-skills](https://github.com/vercel-labs/agent-skills) and [Impeccable](https://github.com/pbakaus/impeccable): the rules and ideas behind the UI skills
 
-```bash
-./scripts/sync-vendor.sh --check      # what drifted, writes nothing
-./scripts/sync-vendor.sh              # pull latest for every source
-./scripts/sync-vendor.sh guard-skills # pull latest for one source
-./scripts/sync-vendor.sh --yes        # accept the content audit without prompting
-```
+`hub-workflow`, the UI skills and the local adaptations were written for this repository; [local-sources.json](local-sources.json) records exactly what each adaptation is based on. The repository is [MIT](LICENSE).
 
-Before writing anything, the sync audits every upstream folder for content a `git diff`
-will not make obvious — non-documentation files, the executable bit, symlinks, binaries,
-and archives — and marks each finding **NEW** or **known**. With findings it waits for an
-explicit `y`; a run with no terminal fails instead of assuming consent. The
-vendor-owned baseline is seven `.mjs` files, all known. The local
-`debate-review` fork adds eight inspected `.mjs` files outside sync ownership, and
-`ui-guard` adds two local ones (`ui-audit.mjs`, `capture.mjs`); see their audit
-records in [SKILL-SAFETY.md](SKILL-SAFETY.md).
+## Contributing and maintaining
 
-The sync **replaces vendored folders wholesale** — local edits inside them are lost.
-To change vendored behaviour, use a separate unlisted local skill or deliberately
-transfer its ownership out of `vendor.json`. Record fork provenance and preserve
-the licence. Local adaptations in `local-sources.json` are updated manually.
-
-Review before committing:
-
-```bash
-git diff --stat
-```
-
-To pin a source instead of tracking a branch, set its `ref` in `vendor.json` to a tag
-or commit SHA. `vendor.lock.json` always records the commit actually vendored.
-
-## Adding another upstream source
-
-Append to `sources` in `vendor.json`:
-
-```json
-{
-  "name": "some-pack",
-  "repo": "https://github.com/someone/some-pack.git",
-  "ref": "main",
-  "path": "skills",
-  "skills": ["skill-a", "skill-b"]
-}
-```
-
-Omit `skills` to vendor everything the source ships. Then run the sync.
-
-## Before vendoring anything new
-
-Read [SKILL-SAFETY.md](SKILL-SAFETY.md). It covers what a skill can actually execute, the
-vetting checklist, and a record of skills removed from here and why.
-
-Short version: a skill can ship executable scripts, and its `SKILL.md` prose is itself
-instructions the agent obeys — so Markdown-only means *inspectable*, not *safe*. Vendor
-only what you actually use.
-
-## Notes
-
-- Vendored skills keep their upstream licences. See each skill's folder and the
-  source repo. `guard-skills` and `delegate-skills` are MIT.
-- Skills install as a **copy** into `~/.agents/skills/`, so changes here do not reach an
-  installed agent until the install command above is run again. Re-run it after every sync,
-  or the agents keep running the previous version while git shows the new one.
-- This repo was Markdown and JSON only until `delegate-skills`, which ships a
-  `scripts/relay.mjs` per implementer plus four helpers under `delegate-setup`. Those
-  run on every machine that installs from here. They are Node built-ins only, make no
-  network calls of their own, and read no credentials — but that is a claim to re-check
-  on every sync, not a property the sync enforces. See [SKILL-SAFETY.md](SKILL-SAFETY.md).
-
-## Checks
-
-```bash
-node --test tests/debate-review.test.mjs
-node --test tests/ui-audit.test.mjs tests/ui-workflow.test.mjs
-jq empty vendor.json vendor.lock.json local-sources.json docs/workflow-map.json
-bash -n scripts/sync-vendor.sh
-npx skills add . --list --full-depth
-```
-
-Tests use temporary repositories and fake model responses. They make no live model
-calls and do not install skills or configure real accounts.
-
-## Requirements
-
-`git` and [`jq`](https://jqlang.github.io/jq/) for the sync script (`brew install jq`).
-
-Node 18+ for the debate-review script and offline tests. `ui-guard`'s `capture.mjs`
-needs Node 22+ and an installed Chrome, Chromium or Edge; without them its browser
-tests are skipped and agents report rendered checks as unavailable. Remote review also needs
-the matching authenticated forge CLI and available delegate implementers; adding
-these files does not provision those dependencies.
+Add a skill by copying `templates/skill-template`, refresh vendored upstream skills with `scripts/sync-vendor.sh`, and run the offline checks before opening a pull request. All of it is in [docs/maintaining.md](docs/maintaining.md). Contributor conventions are in [AGENTS.md](AGENTS.md).

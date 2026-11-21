@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 768" width="760" height="768" role="img" aria-labelledby="t d">
+<title id="t">How hub-workflow routes a task</title>
+<desc id="d">A task enters hub-workflow, which picks the shortest route: grill-me-code for an unsettled plan, wayfinder for many interdependent decisions, prototype for a runnable design question, diagnosing-bugs for a recurring bug, to-spec then to-tickets for a large agreed feature, tdd and build for a ready ticket, and ui-engineering for screens. Every route ends in review with the matching guard skills, optionally debate-review, and a verified result.</desc>
+<style>
+@media (prefers-reduced-motion: reduce){.a{animation:none!important;opacity:1!important;transform:none!important}}</style>
+<rect x="1" y="1" width="758" height="766" rx="22" fill="#0d1117" stroke="#30363d" stroke-width="1.5" />
+<text x="40" y="58" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="27" font-weight="800" fill="#e6edf3" text-anchor="start" >Pick the route, not the ceremony</text>
+<text x="40" y="88" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="400" fill="#9198a1" text-anchor="start" >hub-workflow chooses the shortest path that finishes the job.</text>
+<rect x="40" y="112" width="680" height="70" rx="16" fill="#4493f8" stroke="#4493f8" stroke-width="1.5" />
+<text x="66" y="156" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="24" font-weight="800" fill="#0d1117" text-anchor="start" >hub-workflow</text>
+<text x="694" y="153" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15.5" font-weight="600" fill="#0d1117" text-anchor="end" >reads the task, picks the route</text>
+<path d="M62,182 L62,572" stroke="#1f6feb" stroke-width="2.5" fill="none"/>
+<path d="M62,214 L86,214" stroke="#1f6feb" stroke-width="2.5" fill="none"/>
+<circle cx="62" cy="214" r="5.5" fill="#4493f8"/>
+<text x="100" y="219.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#e6edf3" text-anchor="start" >Unsettled technical plan</text>
+<g><rect x="452" y="200" width="123.4" height="28" rx="14.0" fill="#12263f" stroke="#1f6feb" stroke-width="1.2"/><text x="513.7" y="218.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#4493f8" text-anchor="middle">grill-me-code</text></g>
+<path d="M62,266 L86,266" stroke="#1f6feb" stroke-width="2.5" fill="none"/>
+<circle cx="62" cy="266" r="5.5" fill="#4493f8"/>
+<text x="100" y="271.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#e6edf3" text-anchor="start" >Many decisions across sessions</text>
+<g><rect x="452" y="252" width="92.2" height="28" rx="14.0" fill="#12263f" stroke="#1f6feb" stroke-width="1.2"/><text x="498.1" y="270.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#4493f8" text-anchor="middle">wayfinder</text></g>
+<path d="M62,318 L86,318" stroke="#1f6feb" stroke-width="2.5" fill="none"/>
+<circle cx="62" cy="318" r="5.5" fill="#4493f8"/>
+<text x="100" y="323.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#e6edf3" text-anchor="start" >Design question needs a runnable</text>
+<g><rect x="452" y="304" width="92.2" height="28" rx="14.0" fill="#12263f" stroke="#1f6feb" stroke-width="1.2"/><text x="498.1" y="322.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#4493f8" text-anchor="middle">prototype</text></g>
+<path d="M62,370 L86,370" stroke="#1f6feb" stroke-width="2.5" fill="none"/>
+<circle cx="62" cy="370" r="5.5" fill="#4493f8"/>
+<text x="100" y="375.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#e6edf3" text-anchor="start" >Recurring or unclear bug</text>
+<g><rect x="452" y="356" width="139.0" height="28" rx="14.0" fill="#12263f" stroke="#1f6feb" stroke-width="1.2"/><text x="521.5" y="374.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#4493f8" text-anchor="middle">diagnosing-bugs</text></g>
+<path d="M62,422 L86,422" stroke="#1f6feb" stroke-width="2.5" fill="none"/>
+<circle cx="62" cy="422" r="5.5" fill="#4493f8"/>
+<text x="100" y="427.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#e6edf3" text-anchor="start" >Agreed feature, too big for one change</text>
+<g><rect x="452" y="408" width="76.6" height="28" rx="14.0" fill="#12263f" stroke="#1f6feb" stroke-width="1.2"/><text x="490.3" y="426.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#4493f8" text-anchor="middle">to-spec</text></g>
+<text x="534.6" y="427.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#9198a1" text-anchor="start" >→</text>
+<g><rect x="553.6" y="408" width="100.0" height="28" rx="14.0" fill="#12263f" stroke="#1f6feb" stroke-width="1.2"/><text x="603.6" y="426.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#4493f8" text-anchor="middle">to-tickets</text></g>
+<path d="M62,474 L86,474" stroke="#1f6feb" stroke-width="2.5" fill="none"/>
+<circle cx="62" cy="474" r="5.5" fill="#4493f8"/>
+<text x="100" y="479.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#e6edf3" text-anchor="start" >Ready ticket or concrete change</text>
+<g><rect x="452" y="460" width="45.4" height="28" rx="14.0" fill="#12263f" stroke="#1f6feb" stroke-width="1.2"/><text x="474.7" y="478.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#4493f8" text-anchor="middle">tdd</text></g>
+<text x="503.4" y="479.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="15" font-weight="700" fill="#9198a1" text-anchor="start" >→</text>
+<g><rect x="522.4" y="460" width="61.0" height="28" rx="14.0" fill="#161b22" stroke="#30363d" stroke-width="1.2"/><text x="552.9" y="478.6" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#9198a1" text-anchor="middle">build</text></g>
+<path d="M62,526 L86,526" stroke="#1f6feb" stroke-width="2.5" fill="none"/>
+<circle cx="62" cy="526" r="5.5" fill="#4493f8"/>
+<text x="100" y="531.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="500" fill="#e6edf3" text-anchor="start" >Screen, form, component or redesign</text>
+<g><rect x="452" y="512" width="131.2" height="28" rx="14.0" fill="#12263f" stroke="#1f6feb" stroke-width="1.2"/><text x="517.6" y="530.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#4493f8" text-anchor="middle">ui-engineering</text></g>
+<path d="M57,566 L62,574 L67,566" stroke="#1f6feb" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="78" y="566" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="13.5" font-weight="600" fill="#9198a1" text-anchor="start" >every route ends in review</text>
+<rect x="40" y="578" width="680" height="168" rx="16" fill="#161b22" stroke="#30363d" stroke-width="1.5" />
+<text x="62" y="612" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="17" font-weight="800" fill="#e6edf3" text-anchor="start" >Review: does it match the agreement, and is it sound?</text>
+<text x="62" y="636" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="14" font-weight="400" fill="#9198a1" text-anchor="start" >One contract for direct and delegated work. Guards apply only to what changed.</text>
+<g><rect x="62" y="652" width="146.8" height="28" rx="14.0" fill="#161b22" stroke="#30363d" stroke-width="1.2"/><text x="135.4" y="670.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#e6edf3" text-anchor="middle">clean-code-guard</text></g>
+<g><rect x="216.8" y="652" width="100.0" height="28" rx="14.0" fill="#161b22" stroke="#30363d" stroke-width="1.2"/><text x="266.8" y="670.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#e6edf3" text-anchor="middle">test-guard</text></g>
+<g><rect x="324.8" y="652" width="100.0" height="28" rx="14.0" fill="#161b22" stroke="#30363d" stroke-width="1.2"/><text x="374.8" y="670.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#e6edf3" text-anchor="middle">docs-guard</text></g>
+<g><rect x="432.8" y="652" width="84.4" height="28" rx="14.0" fill="#161b22" stroke="#30363d" stroke-width="1.2"/><text x="475.0" y="670.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#e6edf3" text-anchor="middle">ui-guard</text></g>
+<g><rect x="62" y="688" width="84.4" height="28" rx="14.0" fill="#161b22" stroke="#30363d" stroke-width="1.2"/><text x="104.2" y="706.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#e6edf3" text-anchor="middle">wp-guard</text></g>
+<g><rect x="154.4" y="688" width="92.2" height="28" rx="14.0" fill="#161b22" stroke="#30363d" stroke-width="1.2"/><text x="200.5" y="706.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#e6edf3" text-anchor="middle">woo-guard</text></g>
+<g><rect x="260.6" y="688" width="123.4" height="28" rx="14.0" fill="#161b22" stroke="#30363d" stroke-width="1.2" stroke-dasharray="4 3"/><text x="322.3" y="706.5" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" font-size="13" font-weight="600" fill="#9198a1" text-anchor="middle">debate-review</text></g>
+<text x="62" y="736" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="400" fill="#9198a1" text-anchor="start" >debate-review: two independent reviewers, only on request or project policy</text>
+<rect x="530" y="648" width="168" height="68" rx="14" fill="#0f2d1a" stroke="#238636" stroke-width="1.5" />
+<text x="614" y="676" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="16" font-weight="800" fill="#3fb950" text-anchor="middle" >Verified result</text>
+<text x="614" y="698" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="500" fill="#3fb950" text-anchor="middle" >you decide what ships</text>
+</svg>
