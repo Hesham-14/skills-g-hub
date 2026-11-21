@@ -1,0 +1,40 @@
+---
+name: _template
+description: "REPLACE ME. This sentence decides when the agent activates the skill, so be specific. State (1) what the skill does, (2) the concrete phrases a user says that should trigger it — 'review the migration', 'add a feature flag' — and (3) a DO NOT USE clause listing the neighbouring cases it must stay out of. A vague description means the skill never fires."
+---
+
+# Template Skill
+
+Rename this folder to your skill's name, make the `name:` in the frontmatter match
+the folder exactly, then rewrite everything below.
+
+## How to use this skill
+
+State when the agent should apply it: reactively after work is produced, live while
+writing, or on explicit request. Be concrete about the trigger.
+
+## Adapt to the project first
+
+Before applying any rule, read the surrounding code and match its conventions.
+Project convention beats the generic rule in this file.
+
+## Rules
+
+Keep rules numbered, specific, and checkable. Each one should say what to do, what
+the failure looks like, and why it matters.
+
+1. **Rule name.** What to do. What the violation looks like in practice.
+2. **Rule name.** ...
+
+## Self-check before delivery
+
+- [ ] Every rule above was applied to the changed files, not just skimmed.
+- [ ] Anything deliberately skipped is called out with a reason.
+- [ ] Claims about behaviour were verified against the code, not recalled.
+
+## References
+
+Put deep material in `references/*.md` and link it here. Those files load only when
+the agent needs them, which keeps this entrypoint cheap:
+
+- [references/example.md](references/example.md) — when to read it.

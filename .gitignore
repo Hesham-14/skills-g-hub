@@ -1,0 +1,6 @@
+.DS_Store
+node_modules/
+
+# Skill bundles downloaded from Claude. A .skill is a zip — a transport format,
+# not source. Unpack it into skills/ and commit that instead; see the README.
+*.skill

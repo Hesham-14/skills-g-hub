@@ -1,0 +1,206 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/Hesham-14/skills-g-hub/skills/ui-guard/references/ui-audit.schema.json",
+  "title": "UI audit record",
+  "description": "One verification run of a UI change. Written by scripts/ui-audit.mjs. Statuses other than pass are explicit; a missing check is not_run, never pass.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema", "id", "created_at", "updated_at", "workflow", "project", "task", "git", "stack", "environment", "required_gates", "checks", "evidence", "findings", "metrics", "agent_usage", "gates", "verdict", "notes"],
+  "properties": {
+    "schema": { "const": "ui-audit/v1" },
+    "id": { "type": "string", "pattern": "^[A-Za-z0-9._-]+$" },
+    "created_at": { "$ref": "#/$defs/timestamp" },
+    "updated_at": { "$ref": "#/$defs/timestamp" },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "version"],
+      "properties": {
+        "name": { "const": "ui-engineering-system" },
+        "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" }
+      }
+    },
+    "project": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "repository"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "repository": { "type": ["string", "null"] }
+      }
+    },
+    "task": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["summary", "class", "scope"],
+      "properties": {
+        "summary": { "type": "string", "minLength": 1 },
+        "class": { "enum": ["trivial", "standard", "significant", "redesign", "audit"] },
+        "scope": { "type": "array", "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "git": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["baseline", "result"],
+      "properties": {
+        "baseline": { "$ref": "#/$defs/gitState" },
+        "result": { "oneOf": [{ "$ref": "#/$defs/gitState" }, { "type": "null" }] }
+      }
+    },
+    "stack": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "signals"],
+      "properties": {
+        "id": { "enum": ["react-plain-css", "react-tailwind", "server-templates", "static", "other", "unknown"] },
+        "signals": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "os", "node", "browser", "browser_version", "build_mode", "tool", "device"],
+      "properties": {
+        "status": { "enum": ["recorded", "unavailable"] },
+        "os": { "type": "string" },
+        "node": { "type": "string" },
+        "browser": { "type": ["string", "null"] },
+        "browser_version": { "type": ["string", "null"] },
+        "build_mode": { "enum": ["dev", "preview", "production", "static", "unknown"] },
+        "tool": { "type": ["string", "null"] },
+        "device": { "type": ["string", "null"] }
+      }
+    },
+    "required_gates": { "type": "array", "items": { "$ref": "#/$defs/gate" } },
+    "checks": { "type": "array", "items": { "$ref": "#/$defs/check" } },
+    "evidence": { "type": "array", "items": { "$ref": "#/$defs/evidence" } },
+    "findings": { "type": "array", "items": { "$ref": "#/$defs/finding" } },
+    "metrics": { "type": "array", "items": { "$ref": "#/$defs/metric" } },
+    "agent_usage": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["status", "source", "input_tokens", "output_tokens", "cost_usd"],
+      "properties": {
+        "status": { "enum": ["recorded", "unavailable"] },
+        "source": { "type": ["string", "null"] },
+        "input_tokens": { "type": ["integer", "null"], "minimum": 0 },
+        "output_tokens": { "type": ["integer", "null"], "minimum": 0 },
+        "cost_usd": { "type": ["number", "null"], "minimum": 0 }
+      }
+    },
+    "gates": {
+      "type": ["object", "null"],
+      "additionalProperties": false,
+      "properties": {
+        "visual": { "$ref": "#/$defs/status" },
+        "ux": { "$ref": "#/$defs/status" },
+        "a11y": { "$ref": "#/$defs/status" },
+        "functional": { "$ref": "#/$defs/status" },
+        "architecture": { "$ref": "#/$defs/status" },
+        "performance": { "$ref": "#/$defs/status" },
+        "build": { "$ref": "#/$defs/status" }
+      }
+    },
+    "verdict": {
+      "oneOf": [
+        { "type": "null" },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "reasons"],
+          "properties": {
+            "status": { "enum": ["pass", "fail", "incomplete"] },
+            "reasons": { "type": "array", "items": { "type": "string" } }
+          }
+        }
+      ]
+    },
+    "notes": { "type": "array", "items": { "type": "string" } }
+  },
+  "$defs": {
+    "timestamp": { "type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d+)?Z$" },
+    "gate": { "enum": ["visual", "ux", "a11y", "functional", "architecture", "performance", "build"] },
+    "status": { "enum": ["pass", "fail", "not_run", "blocked", "unavailable"] },
+    "id": { "type": "string", "pattern": "^[a-z]+-[0-9]+$" },
+    "gitState": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["commit", "branch", "dirty"],
+      "properties": {
+        "commit": { "type": ["string", "null"], "pattern": "^[0-9a-f]{7,64}$" },
+        "branch": { "type": ["string", "null"] },
+        "dirty": { "type": ["boolean", "null"] }
+      }
+    },
+    "check": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "gate", "name", "status", "command", "exit_code", "duration_ms", "captured_by", "output_tail", "evidence", "note", "at"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "gate": { "$ref": "#/$defs/gate" },
+        "name": { "type": "string", "minLength": 1 },
+        "status": { "$ref": "#/$defs/status" },
+        "command": { "type": ["string", "null"] },
+        "exit_code": { "type": ["integer", "null"] },
+        "duration_ms": { "type": ["integer", "null"], "minimum": 0 },
+        "captured_by": { "enum": ["recorder", "agent", "report-import"] },
+        "output_tail": { "type": ["string", "null"] },
+        "evidence": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+        "note": { "type": ["string", "null"] },
+        "at": { "$ref": "#/$defs/timestamp" }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "kind", "path", "sha256", "observed", "tool", "viewport", "theme", "direction", "state", "url", "sensitive"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "kind": { "enum": ["screenshot", "trace", "video", "console", "network", "a11y-tree", "dom", "report", "log"] },
+        "path": { "type": ["string", "null"] },
+        "sha256": { "type": ["string", "null"], "pattern": "^[0-9a-f]{64}$" },
+        "observed": { "type": ["string", "null"] },
+        "tool": { "type": "string", "minLength": 1 },
+        "viewport": { "type": ["string", "null"], "pattern": "^[0-9]+x[0-9]+$" },
+        "theme": { "type": ["string", "null"] },
+        "direction": { "enum": ["ltr", "rtl", null] },
+        "state": { "type": ["string", "null"] },
+        "url": { "type": ["string", "null"] },
+        "sensitive": { "type": "boolean" }
+      }
+    },
+    "finding": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "severity", "gate", "title", "basis", "location", "evidence", "remediation", "status", "fingerprint"],
+      "properties": {
+        "id": { "$ref": "#/$defs/id" },
+        "severity": { "enum": ["P0", "P1", "P2", "P3"] },
+        "gate": { "$ref": "#/$defs/gate" },
+        "title": { "type": "string", "minLength": 1 },
+        "basis": { "enum": ["rendered", "measured", "source"] },
+        "location": { "type": ["string", "null"] },
+        "evidence": { "type": "array", "items": { "$ref": "#/$defs/id" } },
+        "remediation": { "type": ["string", "null"] },
+        "status": { "enum": ["open", "fixed", "accepted", "false_positive"] },
+        "fingerprint": { "type": "string", "pattern": "^[0-9a-f]{16}$" }
+      }
+    },
+    "metric": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "value", "unit", "better", "source", "viewport", "url"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "value": { "type": "number" },
+        "unit": { "enum": ["ms", "score", "count", "bytes", "ratio"] },
+        "better": { "enum": ["lower", "higher"] },
+        "source": { "type": "string", "minLength": 1 },
+        "viewport": { "type": ["string", "null"], "pattern": "^[0-9]+x[0-9]+$" },
+        "url": { "type": ["string", "null"] }
+      }
+    }
+  }
+}

@@ -1,0 +1,4 @@
+[project]
+name = "offers-fixture"
+version = "0.1.0"
+dependencies = ["fastapi", "jinja2", "uvicorn"]

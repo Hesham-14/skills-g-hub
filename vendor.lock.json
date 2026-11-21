@@ -1,0 +1,63 @@
+{
+  "sources": [
+    {
+      "name": "anthropic-skills",
+      "repo": "https://github.com/anthropics/skills.git",
+      "ref": "HEAD",
+      "commit": "f17010c9bb483898c1d9c9f42dde2b3a98889434",
+      "synced_at": "2026-08-10T22:56:35Z",
+      "skills": [
+        "frontend-design"
+      ]
+    },
+    {
+      "name": "delegate-skills",
+      "repo": "https://github.com/amElnagdy/delegate-skills.git",
+      "ref": "v0.5.0",
+      "commit": "3b0900706e4fba88c13f590ea8dd43014c6a3e55",
+      "synced_at": "2026-08-28T20:40:17Z",
+      "skills": [
+        "claude-delegate",
+        "codex-delegate",
+        "agy-delegate",
+        "delegate-setup"
+      ]
+    },
+    {
+      "name": "guard-skills",
+      "repo": "https://github.com/amElnagdy/guard-skills.git",
+      "ref": "master",
+      "commit": "ffa26036b7b5e77b20b5d679304a703b6fd1a43d",
+      "synced_at": "2026-08-10T22:56:31Z",
+      "skills": [
+        "clean-code-guard",
+        "test-guard",
+        "docs-guard",
+        "wp-guard",
+        "woo-guard"
+      ]
+    },
+    {
+      "name": "matt-pocock-engineering",
+      "repo": "https://github.com/mattpocock/skills.git",
+      "ref": "v1.2.3",
+      "commit": "6acc160e4e0cd062dbbbd7a1b26ae92855edf07e",
+      "synced_at": "2026-08-10T22:56:36Z",
+      "skills": [
+        "research",
+        "resolving-merge-conflicts"
+      ]
+    },
+    {
+      "name": "matt-pocock-productivity",
+      "repo": "https://github.com/mattpocock/skills.git",
+      "ref": "v1.2.3",
+      "commit": "6acc160e4e0cd062dbbbd7a1b26ae92855edf07e",
+      "synced_at": "2026-08-10T22:56:38Z",
+      "skills": [
+        "writing-for-agents",
+        "handoff"
+      ]
+    }
+  ]
+}

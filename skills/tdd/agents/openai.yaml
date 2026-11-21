@@ -1,0 +1,5 @@
+interface:
+  display_name: "Tdd"
+  short_description: "Implement behavior through a red and green loop"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,1 @@
+{% macro field_error(errors, name) %}{% if errors and errors[name] %}<p class="field-error" id="{{ name }}-error" role="alert">{{ errors[name] }}</p>{% endif %}{% endmacro %}

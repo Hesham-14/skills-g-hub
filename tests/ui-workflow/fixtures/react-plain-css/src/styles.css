@@ -1,0 +1,11 @@
+:root { --bg-app: #fff; --text-main: #1d1d1f; --border: #ddd; --radius: 8px; }
+:root[data-theme="dark"] { --bg-app: #1b1b1d; --text-main: #eee; --border: #333; }
+select { border-radius: var(--radius); border: 1px solid var(--border); }
+.app { display: grid; grid-template-columns: 260px 1fr; min-height: 100dvh; background: var(--bg-app); color: var(--text-main); }
+.chat-row { display: flex; justify-content: space-between; }
+.chat-row.active { background: var(--border); }
+.icon-btn { border: 0; background: transparent; }
+.picker [role=menu] { position: absolute; border: 1px solid var(--border); border-radius: var(--radius); }
+.hint { opacity: .7; }
+.modal-backdrop { position: fixed; inset: 0; background: rgb(0 0 0 / .4); }
+.modal-content { background: var(--bg-app); border-radius: var(--radius); padding: 16px; }

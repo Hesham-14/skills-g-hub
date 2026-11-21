@@ -1,0 +1,105 @@
+{
+  "$comment": "Local adaptations: manual updates only; sync-vendor.sh does not own these folders. Compare against these exact upstream commits and inspect every changed instruction/helper before updating.",
+  "sources": [
+    {
+      "repo": "https://github.com/mattpocock/skills.git",
+      "ref": "v1.2.3",
+      "commit": "6acc160e4e0cd062dbbbd7a1b26ae92855edf07e",
+      "path": "skills/engineering",
+      "skills": [
+        "to-spec",
+        "to-tickets",
+        "prototype",
+        "tdd",
+        "wayfinder",
+        "improve-codebase-architecture",
+        "codebase-design",
+        "diagnosing-bugs"
+      ],
+      "changes": "Scoped triggers, conditional hub routing, local tracker default, persistent technical grilling, proportional diagnosis/TDD, evidence-based architecture review. See docs/workflow.md. 2026-11-07: to-spec, to-tickets and prototype name the UI skills for UI work (one line each).",
+      "adapted_resources": [
+        {
+          "upstream": "skills/engineering/domain-modeling",
+          "local": "skills/grill-me-code/references/domain-records.md",
+          "purpose": "Persistent terminology and consequential decision rationale; existing grilling fork retained."
+        }
+      ],
+      "local_forks": [
+        {
+          "skill": "setup-matt-pocock-skills",
+          "local": "skills/setup-matt-pocock-skills",
+          "base": "v1.2.3 (6acc160e), same pin as the other skills in this entry",
+          "diff_vs_upstream": "SKILL.md +49/-6, plus a new workflow.md template (with a UI verification section added 2026-11-07). Every other file is byte-identical to v1.2.3.",
+          "changes": "Adds a Check run for already-configured repos (step 5, also runnable on its own), a Section D recording the repo's real verification commands, a diff-before-write rule for existing files, and docs/agents/workflow.md. No scripts - the skill stays prompt-driven. 2026-11-07: Section D also proposes UI verification rows (run/stop command, browser test command, viewports, themes, direction, screenshot auth) for repos with a rendered UI.",
+          "evidence": "15/15 assertions vs 8/15 for v1.2.3 across three fixture repos; costs ~39% more wall time and ~10% more tokens.",
+          "upstream_status": "Not upstreamed; kept as a local fork.",
+          "note": "main has moved past v1.2.3 for this skill (em-dashes replaced with colons, YAML descriptions quoted). Those are house-style changes with no effect here. A main-based port of this same fork exists at files/setup-skill.patch if the whole entry is ever repinned."
+        }
+      ],
+      "upstream_review": {
+        "reviewed": "2026-09-06",
+        "upstream_head": "3cca18b",
+        "commits_since_pin": 41,
+        "finding": "No new tag since v1.2.3; main is unreleased work. Across all 13 skills taken from this repo, the drift is almost entirely the repo-wide em-dash removal and a /skill-name to 'call the Skill tool' terminology audit. research and resolving-merge-conflicts are cosmetic-only at the word level.",
+        "adopted": "One real bug, ported by hand: skills told the agent to invoke a skill marked disable-model-invocation, which cannot work. Fixed at four call sites (wayfinder, to-spec, to-tickets, and our own hub-workflow) to tell the user to run it instead. hub-workflow's `handoff` call had the same bug and is not inherited from upstream.",
+        "not_adopted": "Em-dash and terminology churn: no behavioural effect and this hub has no such style rule. Upstream also deleted diagnosing-bugs' post-mortem recommendation to dodge the same bug; our fork already offers improve-codebase-architecture as separate scoped work, which keeps the value. Repinning all 13 skills to main buys nothing today.",
+        "user_invoked_skills_here": [
+          "setup-matt-pocock-skills",
+          "handoff"
+        ]
+      }
+    },
+    {
+      "repo": "https://github.com/amElnagdy/review-skills.git",
+      "ref": "5b748c654bb060ef6bf86d0e7ae123979082a88a",
+      "commit": "5b748c654bb060ef6bf86d0e7ae123979082a88a",
+      "path": "skills",
+      "skills": [
+        "debate-review"
+      ],
+      "changes": "Print-only default, explicit --post, sibling delegate discovery, trusted original-project lane resolution, read-only failure handling. See files/debate-review-integration-audit.md."
+    },
+    {
+      "repo": "https://github.com/vercel-labs/web-interface-guidelines.git",
+      "ref": "434b7f91364665f2f733b310ec54809bf8f37937",
+      "commit": "434b7f91364665f2f733b310ec54809bf8f37937",
+      "path": "command.md",
+      "skills": [
+        "ui-guard"
+      ],
+      "copied_to": "skills/ui-guard/references/web-interface-guidelines.md",
+      "changes": "Rules section copied verbatim (MIT); command preamble and output format replaced by ui-guard's finding format. Replaces vercel-labs/agent-skills web-design-guidelines, which fetches this file from main on every review.",
+      "licence": "MIT, Copyright (c) 2025 Vercel Labs; text in skills/ui-guard/NOTICE.md"
+    },
+    {
+      "repo": "https://github.com/vercel-labs/agent-skills.git",
+      "ref": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "commit": "1a2c79d4e6c4a2283dc2c614b6538cbe1ed5ca62",
+      "path": "skills/composition-patterns, skills/react-best-practices",
+      "skills": [
+        "ui-engineering"
+      ],
+      "copied_to": "skills/ui-engineering/references/react-rules.md",
+      "changes": "Selected rule IDs with one-line rewordings for client-rendered React; Next.js/server rules omitted. Not vendored: frontmatter names do not match their folders, broad React triggers, 108 KB react-best-practices AGENTS.md.",
+      "licence": "MIT (declared in README and skill frontmatter; no LICENSE file at this commit); notice in skills/ui-engineering/NOTICE.md"
+    },
+    {
+      "repo": "https://github.com/pbakaus/impeccable.git",
+      "ref": "v4.8.0",
+      "commit": "687bc381bc9091bf252c0a05303640561014a425",
+      "path": "skill/reference/audit.md, skill/reference/craft-floor.md",
+      "skills": [
+        "ui-guard"
+      ],
+      "copied_to": "skills/ui-guard/references/review-rubric.md (ideas rewritten, no file copied)",
+      "changes": "Audit dimensions, P0-P3 severity and render-verification checks adapted. Not vendored: its launcher runs or downloads a platform binary, its description claims every UI verb, and its references are heavy.",
+      "licence": "Apache-2.0; attribution and change statement in skills/ui-guard/NOTICE.md"
+    }
+  ],
+  "ui_upstream_review": {
+    "reviewed": "2026-11-07",
+    "record": "files/ui-upstream-assessment.md",
+    "reused_without_copy": "frontend-design (vendored anthropic-skills; upstream 2c5958ec is ahead of the vendored f17010c9, refresh through sync-vendor.sh when chosen)",
+    "not_taken": "anthropics/skills webapp-testing (2c5958ec, Popen helper), microsoft/playwright-cli (4bc00fb7, needs a global binary), vercel-labs/agent-skills web-design-guidelines (fetches main at run time)"
+  }
+}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% from "macros.html" import field_error %}
+{% block css %}.price { margin-left: 8px; }{% endblock %}
+{% block main %}
+<h1>العروض</h1>
+{% for offer in offers %}
+<article class="card" data-state="{{ offer.gate }}">
+  <h2>{{ offer.name }}</h2>
+  <span class="price"><bdi>{{ offer.price }}</bdi> ج.م</span>
+</article>
+{% else %}
+<p class="empty">مفيش عروض لسه. ابدأ من الوارد.</p>
+{% endfor %}
+{% endblock %}

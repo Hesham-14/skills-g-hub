@@ -1,0 +1,5 @@
+interface:
+  display_name: "UI E2E Tests"
+  short_description: "Real-browser flow, visual and accessibility tests"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,5 @@
+interface:
+  display_name: "Hub Workflow"
+  short_description: "Connect planning, execution and focused review"
+policy:
+  allow_implicit_invocation: true

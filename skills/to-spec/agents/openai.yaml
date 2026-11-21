@@ -1,0 +1,5 @@
+interface:
+  display_name: "To Spec"
+  short_description: "Capture an agreed feature as a concise spec"
+policy:
+  allow_implicit_invocation: true

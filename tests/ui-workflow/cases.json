@@ -1,0 +1,134 @@
+{
+  "$comment": "UI workflow evaluation cases. 'activation' cases run live through tests/ui-workflow/activation-eval.mjs (opt-in, costs model usage) and are checked structurally by tests/ui-workflow.test.mjs. 'behaviour' cases name the offline test that proves them. expect_any: at least one of these skills must load. forbid: none of these may load. A case with expect_any [] passes when no forbidden skill loads.",
+  "cases": [
+    {
+      "id": "tiny-css",
+      "kind": "activation",
+      "fixture": "static-site",
+      "prompt": "The Save visit button on fixed.html looks cramped. Give it a bit more horizontal padding.",
+      "expect_any": ["ui-engineering"],
+      "accept_none": true,
+      "forbid": ["prototype", "to-spec", "to-tickets", "ui-design-system", "ui-e2e-tests", "wayfinder"],
+      "class": "trivial"
+    },
+    {
+      "id": "new-form-jinja",
+      "kind": "activation",
+      "fixture": "jinja-app",
+      "prompt": "Add a 'request a quote' form under each offer on the offers page: name, phone and preferred date, with server-side validation messages in Egyptian Arabic.",
+      "expect_any": ["ui-engineering"],
+      "forbid": ["ui-design-system", "prototype", "ui-guard", "clean-code-guard"],
+      "class": "standard"
+    },
+    {
+      "id": "full-page",
+      "kind": "activation",
+      "fixture": "jinja-app",
+      "prompt": "Build a new Bookings page that lists scheduled appointments with date and status filters, an empty state, and a link from each offer.",
+      "expect_any": ["ui-engineering"],
+      "forbid": ["ui-guard", "ui-e2e-tests", "frontend-design"],
+      "class": "significant"
+    },
+    {
+      "id": "redesign-existing",
+      "kind": "activation",
+      "fixture": "react-plain-css",
+      "prompt": "Redesign the model and effort pickers in the chat header so they look and behave like one consistent control.",
+      "expect_any": ["ui-engineering"],
+      "forbid": ["ui-guard", "ui-e2e-tests"],
+      "class": "redesign"
+    },
+    {
+      "id": "react-no-new-deps",
+      "kind": "activation",
+      "fixture": "react-plain-css",
+      "prompt": "Add a confirmation dialog before a chat is deleted. Remember we don't add packages.",
+      "expect_any": ["ui-engineering"],
+      "forbid": ["prototype", "ui-design-system", "frontend-design"],
+      "class": "standard"
+    },
+    {
+      "id": "rtl-responsive",
+      "kind": "activation",
+      "fixture": "jinja-app",
+      "prompt": "On phones the offers list breaks in RTL: the price wraps under the title and the card overflows at 390px. Fix it.",
+      "expect_any": ["ui-engineering"],
+      "accept_none": true,
+      "forbid": ["prototype", "ui-design-system", "diagnosing-bugs", "to-spec"],
+      "class": "trivial"
+    },
+    {
+      "id": "design-system",
+      "kind": "activation",
+      "fixture": "react-plain-css",
+      "prompt": "Our spacing, radii and colours are inconsistent across components. Set up a proper token scale and dark mode on top of what we have.",
+      "expect_any": ["ui-design-system"],
+      "forbid": ["prototype", "ui-e2e-tests"]
+    },
+    {
+      "id": "ui-review",
+      "kind": "activation",
+      "fixture": "static-site",
+      "prompt": "Review index.html for accessibility and responsive problems before I ship it.",
+      "expect_any": ["ui-guard"],
+      "forbid": ["ui-engineering", "ui-e2e-tests", "test-guard"]
+    },
+    {
+      "id": "e2e-test",
+      "kind": "activation",
+      "fixture": "react-plain-css",
+      "prompt": "Write a Playwright end-to-end test for deleting a chat, including the confirmation step.",
+      "expect_any": ["ui-e2e-tests"],
+      "forbid": ["ui-engineering", "ui-guard", "ui-design-system"]
+    },
+    {
+      "id": "visual-direction-only",
+      "kind": "activation",
+      "fixture": "static-site",
+      "prompt": "I need a visual direction for a landing page for a small coffee roaster: palette, type and one signature idea. Don't build anything yet.",
+      "expect_any": ["frontend-design"],
+      "forbid": ["ui-guard", "ui-e2e-tests", "ui-design-system"]
+    },
+    {
+      "id": "non-ui-cli",
+      "kind": "activation",
+      "fixture": "non-ui",
+      "prompt": "Add an --ignore-case flag to the log-grep CLI.",
+      "expect_any": [],
+      "forbid": ["ui-engineering", "ui-design-system", "ui-guard", "ui-e2e-tests", "frontend-design"]
+    },
+    {
+      "id": "non-ui-backend",
+      "kind": "activation",
+      "fixture": "jinja-app",
+      "prompt": "Write an Alembic migration that adds an index on offers.price and a pytest that checks it exists.",
+      "expect_any": [],
+      "forbid": ["ui-engineering", "ui-design-system", "ui-guard", "ui-e2e-tests", "frontend-design"]
+    },
+    {
+      "id": "failed-visual-a11y",
+      "kind": "behaviour",
+      "proof": "tests/ui-audit.test.mjs: capture finds the seeded defects, records evidence, and the fixed twin comes back clean"
+    },
+    {
+      "id": "missing-browser-tooling",
+      "kind": "behaviour",
+      "proof": "tests/ui-audit.test.mjs: capture refuses remote URLs and reports a missing browser as unavailable"
+    },
+    {
+      "id": "blocked-authentication",
+      "kind": "behaviour",
+      "proof": "tests/ui-audit.test.mjs: an authentication wall is visible in the capture, not mistaken for the page; tests/ui-workflow.test.mjs: authentication, data and dependency safety rules are present"
+    },
+    {
+      "id": "audit-record-and-compare",
+      "kind": "behaviour",
+      "proof": "tests/ui-audit.test.mjs: a pass needs real evidence; compare reports gate, finding and metric regressions"
+    },
+    {
+      "id": "missing-upstream-skill",
+      "kind": "behaviour",
+      "proof": "tests/ui-workflow.test.mjs: every UI skill that names a neighbour says what to do when it is missing"
+    }
+  ]
+}

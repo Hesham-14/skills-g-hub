@@ -1,0 +1,63 @@
+{
+  "$comment": "Upstream skill packages vendored into skills/. Run scripts/sync-vendor.sh to refresh them. Anything in skills/ that is NOT listed here is yours and is never touched by the sync.",
+  "sources": [
+    {
+      "name": "guard-skills",
+      "repo": "https://github.com/amElnagdy/guard-skills.git",
+      "ref": "master",
+      "path": "skills",
+      "skills": [
+        "clean-code-guard",
+        "test-guard",
+        "docs-guard",
+        "wp-guard",
+        "woo-guard"
+      ]
+    },
+    {
+      "name": "anthropic-skills",
+      "repo": "https://github.com/anthropics/skills.git",
+      "ref": "HEAD",
+      "path": "skills",
+      "$comment": "web-artifacts-builder and webapp-testing were deliberately dropped from this list — they ship executable scripts. Read SKILL-SAFETY.md before adding them, or any other script-bearing skill, back.",
+      "skills": [
+        "frontend-design"
+      ]
+    },
+    {
+      "name": "matt-pocock-engineering",
+      "repo": "https://github.com/mattpocock/skills.git",
+      "ref": "v1.2.3",
+      "path": "skills/engineering",
+      "$comment": "Pinned to v1.2.3. Additional workflow skills and diagnosing-bugs are locally adapted outside vendor ownership; their source pins and changes are recorded in local-sources.json.",
+      "skills": [
+        "research",
+        "resolving-merge-conflicts"
+      ]
+    },
+    {
+      "name": "matt-pocock-productivity",
+      "repo": "https://github.com/mattpocock/skills.git",
+      "ref": "v1.2.3",
+      "path": "skills/productivity",
+      "$comment": "grilling is omitted on purpose: its description claims any 'grill' trigger phrase, which collides with grill-me-code's technical scope. Vendored folders cannot be narrowed — fork it instead.",
+      "skills": [
+        "writing-for-agents",
+        "handoff"
+      ]
+    },
+    {
+      "name": "delegate-skills",
+      "repo": "https://github.com/amElnagdy/delegate-skills.git",
+      "ref": "v0.5.0",
+      "path": "skills",
+      "$comment": "Ships executable relay scripts — the exception to the Markdown-only habit, taken deliberately: read SKILL-SAFETY.md. Only the selected implementers are vendored (claude, codex, agy); the other 14 relays stay upstream and are not reviewed here. Pinned to a tag so every update is a decision.",
+      "skills": [
+        "claude-delegate",
+        "codex-delegate",
+        "agy-delegate",
+        "delegate-setup"
+      ]
+    }
+  ]
+}

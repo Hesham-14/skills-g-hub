@@ -1,0 +1,5 @@
+interface:
+  display_name: "Codebase Design"
+  short_description: "Design simple interfaces around real behavior"
+policy:
+  allow_implicit_invocation: true

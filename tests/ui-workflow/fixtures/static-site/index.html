@@ -1,0 +1,25 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Field notes — defects fixture</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <!-- Deliberate defects for the UI evaluation suite. Do not fix this file; fixed.html is the corrected twin. -->
+  <header class="bar">
+    <strong>Field notes</strong>
+    <button class="icon" onclick="document.body.classList.toggle('menu')"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor"/></svg></button>
+  </header>
+  <main>
+    <h1>Log a site visit</h1>
+    <img src="data:image/gif;base64,R0lGODlhAQABAIAAAP///wAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==" width="120" height="80">
+    <form class="wide-form">
+      <input type="text" placeholder="Site name">
+      <button type="submit">Save visit</button>
+    </form>
+  </main>
+  <script>console.error('fixture: deliberate console error');</script>
+</body>
+</html>

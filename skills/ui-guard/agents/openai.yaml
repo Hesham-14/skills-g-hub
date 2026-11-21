@@ -1,0 +1,5 @@
+interface:
+  display_name: "UI Guard"
+  short_description: "Evidence-based UI, UX and accessibility review"
+policy:
+  allow_implicit_invocation: true

@@ -1,0 +1,5 @@
+interface:
+  display_name: "UI Engineering"
+  short_description: "Goal-to-verified UI changes in the project's own stack"
+policy:
+  allow_implicit_invocation: true

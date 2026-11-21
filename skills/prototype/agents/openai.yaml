@@ -1,0 +1,5 @@
+interface:
+  display_name: "Prototype"
+  short_description: "Explore a design question with runnable variants"
+policy:
+  allow_implicit_invocation: true

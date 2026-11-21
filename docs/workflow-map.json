@@ -1,0 +1,727 @@
+{
+  "nodes": [
+    {
+      "id": "setup-matt-pocock-skills",
+      "group": "Planning and decisions",
+      "description": "Project setup: tracker, docs and workflow rules"
+    },
+    {
+      "id": "grill-me-code",
+      "group": "Planning and decisions",
+      "description": "Stress-test the plan; save terms, decisions and their reasons"
+    },
+    {
+      "id": "wayfinder",
+      "group": "Planning and decisions",
+      "description": "Map of interdependent decisions across sessions"
+    },
+    {
+      "id": "to-spec",
+      "group": "Planning and decisions",
+      "description": "Turn an agreement into a clear specification"
+    },
+    {
+      "id": "to-tickets",
+      "group": "Planning and decisions",
+      "description": "Split a spec into verifiable tickets with dependencies"
+    },
+    {
+      "id": "prototype",
+      "group": "Planning and decisions",
+      "description": "Disposable experiment that answers a behavior or UI question"
+    },
+    {
+      "id": "improve-codebase-architecture",
+      "group": "Planning and decisions",
+      "description": "Find architecture problems with real maintenance cost"
+    },
+    {
+      "id": "codebase-design",
+      "group": "Planning and decisions",
+      "description": "Pick simple interfaces that serve real behavior"
+    },
+    {
+      "id": "hub-workflow",
+      "group": "Implementation and diagnosis",
+      "description": "Coordinate the shortest suitable path from planning to review"
+    },
+    {
+      "id": "diagnosing-bugs",
+      "group": "Implementation and diagnosis",
+      "description": "Evidence-based diagnosis that keeps the results of each attempt"
+    },
+    {
+      "id": "tdd",
+      "group": "Implementation and diagnosis",
+      "description": "Failing behavior test first, then the implementation that passes it"
+    },
+    {
+      "id": "codex-delegate",
+      "group": "Implementation and diagnosis",
+      "description": "Authorized delegation to Codex, then review of the result"
+    },
+    {
+      "id": "claude-delegate",
+      "group": "Implementation and diagnosis",
+      "description": "Authorized delegation to Claude, then review of the result"
+    },
+    {
+      "id": "agy-delegate",
+      "group": "Implementation and diagnosis",
+      "description": "Authorized delegation to Antigravity, then review of the result"
+    },
+    {
+      "id": "clean-code-guard",
+      "group": "Review",
+      "description": "Production code quality and generated-code failure modes"
+    },
+    {
+      "id": "test-guard",
+      "group": "Review",
+      "description": "Test quality and keeping regression coverage"
+    },
+    {
+      "id": "docs-guard",
+      "group": "Review",
+      "description": "Documentation matches the source"
+    },
+    {
+      "id": "wp-guard",
+      "group": "Review",
+      "description": "WordPress rules"
+    },
+    {
+      "id": "woo-guard",
+      "group": "Review",
+      "description": "WooCommerce rules"
+    },
+    {
+      "id": "debate-review",
+      "group": "Review",
+      "description": "Two independent reviewers, then adjudication that surfaces disagreements"
+    },
+    {
+      "id": "delegate-setup",
+      "group": "Helpers",
+      "description": "Set up lanes and implementers, with the user's permission"
+    },
+    {
+      "id": "frontend-design",
+      "group": "Helpers",
+      "description": "Visual direction and UI implementation"
+    },
+    {
+      "id": "research",
+      "group": "Helpers",
+      "description": "Research from primary sources with written findings"
+    },
+    {
+      "id": "handoff",
+      "group": "Helpers",
+      "description": "Carry context over to another session or environment"
+    },
+    {
+      "id": "resolving-merge-conflicts",
+      "group": "Helpers",
+      "description": "Resolve an in-progress conflict while preserving both sides' intent"
+    },
+    {
+      "id": "writing-for-agents",
+      "group": "Helpers",
+      "description": "Write clear instructions for agents"
+    },
+    {
+      "id": "ui-engineering",
+      "group": "User interfaces",
+      "description": "From user goal to an implemented, visually reviewed UI, per the project's stack"
+    },
+    {
+      "id": "ui-design-system",
+      "group": "User interfaces",
+      "description": "Extract and develop the project's shared tokens and components"
+    },
+    {
+      "id": "ui-guard",
+      "group": "User interfaces",
+      "description": "Review the UI with browser evidence and record the audit"
+    },
+    {
+      "id": "ui-e2e-tests",
+      "group": "User interfaces",
+      "description": "Real-browser tests: flows, screenshots and accessibility"
+    }
+  ],
+  "edges": [
+    {
+      "source": "hub-workflow",
+      "target": "grill-me-code",
+      "kind": "instruction",
+      "condition": "Technical plan not yet settled",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "wayfinder",
+      "kind": "instruction",
+      "condition": "Many decisions across sessions",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "prototype",
+      "kind": "instruction",
+      "condition": "A question that needs an experiment",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "diagnosing-bugs",
+      "kind": "instruction",
+      "condition": "Recurring or unclear failure",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "to-spec",
+      "kind": "instruction",
+      "condition": "Large build that needs a written agreement",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "to-tickets",
+      "kind": "instruction",
+      "condition": "Stable plan that needs splitting",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "improve-codebase-architecture",
+      "kind": "instruction",
+      "condition": "Recurring architectural friction within scope",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "setup-matt-pocock-skills",
+      "target": "hub-workflow",
+      "kind": "artifact",
+      "condition": "Project rules and a pointer in the agent instructions",
+      "evidence": "skills/setup-matt-pocock-skills/SKILL.md"
+    },
+    {
+      "source": "to-spec",
+      "target": "setup-matt-pocock-skills",
+      "kind": "instruction",
+      "condition": "If the project's tracker setup is missing",
+      "evidence": "skills/to-spec/SKILL.md"
+    },
+    {
+      "source": "to-tickets",
+      "target": "setup-matt-pocock-skills",
+      "kind": "instruction",
+      "condition": "If the project's tracker setup is missing",
+      "evidence": "skills/to-tickets/SKILL.md"
+    },
+    {
+      "source": "wayfinder",
+      "target": "setup-matt-pocock-skills",
+      "kind": "instruction",
+      "condition": "If the project's tracker setup is missing",
+      "evidence": "skills/wayfinder/SKILL.md"
+    },
+    {
+      "source": "grill-me-code",
+      "target": "to-spec",
+      "kind": "instruction",
+      "condition": "Stable agreement and an authorized large build",
+      "evidence": "skills/grill-me-code/SKILL.md"
+    },
+    {
+      "source": "grill-me-code",
+      "target": "prototype",
+      "kind": "instruction",
+      "condition": "Design question that needs an experiment",
+      "evidence": "skills/grill-me-code/SKILL.md"
+    },
+    {
+      "source": "grill-me-code",
+      "target": "hub-workflow",
+      "kind": "instruction",
+      "condition": "Implementation authorized and plan stable",
+      "evidence": "skills/grill-me-code/SKILL.md"
+    },
+    {
+      "source": "wayfinder",
+      "target": "grill-me-code",
+      "kind": "instruction",
+      "condition": "Settle decisions and save their reasons",
+      "evidence": "skills/wayfinder/SKILL.md"
+    },
+    {
+      "source": "wayfinder",
+      "target": "research",
+      "kind": "instruction",
+      "condition": "Decision that needs external facts",
+      "evidence": "skills/wayfinder/SKILL.md"
+    },
+    {
+      "source": "wayfinder",
+      "target": "prototype",
+      "kind": "instruction",
+      "condition": "Decision that needs an experiment",
+      "evidence": "skills/wayfinder/SKILL.md"
+    },
+    {
+      "source": "wayfinder",
+      "target": "to-spec",
+      "kind": "instruction",
+      "condition": "Ambiguity resolved; the build is clear",
+      "evidence": "skills/wayfinder/SKILL.md"
+    },
+    {
+      "source": "to-spec",
+      "target": "to-tickets",
+      "kind": "instruction",
+      "condition": "Authorized multi-step build",
+      "evidence": "skills/to-spec/SKILL.md"
+    },
+    {
+      "source": "to-tickets",
+      "target": "hub-workflow",
+      "kind": "instruction",
+      "condition": "Authorized ticket execution",
+      "evidence": "skills/to-tickets/SKILL.md"
+    },
+    {
+      "source": "prototype",
+      "target": "frontend-design",
+      "kind": "instruction",
+      "condition": "UI experiment that needs a visual direction",
+      "evidence": "skills/prototype/SKILL.md"
+    },
+    {
+      "source": "prototype",
+      "target": "grill-me-code",
+      "kind": "instruction",
+      "condition": "Feed the experiment result back into the decision",
+      "evidence": "skills/prototype/SKILL.md"
+    },
+    {
+      "source": "prototype",
+      "target": "to-spec",
+      "kind": "instruction",
+      "condition": "The result feeds the spec",
+      "evidence": "skills/prototype/SKILL.md"
+    },
+    {
+      "source": "diagnosing-bugs",
+      "target": "tdd",
+      "kind": "instruction",
+      "condition": "Reproduction that has a suitable test interface",
+      "evidence": "skills/diagnosing-bugs/SKILL.md"
+    },
+    {
+      "source": "diagnosing-bugs",
+      "target": "hub-workflow",
+      "kind": "instruction",
+      "condition": "Review the fix against the original evidence",
+      "evidence": "skills/diagnosing-bugs/SKILL.md"
+    },
+    {
+      "source": "tdd",
+      "target": "test-guard",
+      "kind": "instruction",
+      "condition": "Test quality rules",
+      "evidence": "skills/tdd/SKILL.md"
+    },
+    {
+      "source": "tdd",
+      "target": "codebase-design",
+      "kind": "instruction",
+      "condition": "The test interface itself is unclear",
+      "evidence": "skills/tdd/SKILL.md"
+    },
+    {
+      "source": "tdd",
+      "target": "hub-workflow",
+      "kind": "instruction",
+      "condition": "Review the change after the behavior passes",
+      "evidence": "skills/tdd/SKILL.md"
+    },
+    {
+      "source": "improve-codebase-architecture",
+      "target": "codebase-design",
+      "kind": "instruction",
+      "condition": "Assess interfaces and actual complexity",
+      "evidence": "skills/improve-codebase-architecture/SKILL.md"
+    },
+    {
+      "source": "improve-codebase-architecture",
+      "target": "grill-me-code",
+      "kind": "instruction",
+      "condition": "Settle the proposal and save the reason",
+      "evidence": "skills/improve-codebase-architecture/SKILL.md"
+    },
+    {
+      "source": "improve-codebase-architecture",
+      "target": "to-spec",
+      "kind": "instruction",
+      "condition": "Architecture improvement that needs a multi-step plan",
+      "evidence": "skills/improve-codebase-architecture/SKILL.md"
+    },
+    {
+      "source": "codebase-design",
+      "target": "grill-me-code",
+      "kind": "instruction",
+      "condition": "Consequential trade-off not yet settled",
+      "evidence": "skills/codebase-design/SKILL.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "codex-delegate",
+      "kind": "optional",
+      "condition": "When delegation is authorized and the implementer is available",
+      "evidence": "skills/hub-workflow/references/execution.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "claude-delegate",
+      "kind": "optional",
+      "condition": "When delegation is authorized and the implementer is available",
+      "evidence": "skills/hub-workflow/references/execution.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "agy-delegate",
+      "kind": "optional",
+      "condition": "When delegation is authorized and the implementer is available",
+      "evidence": "skills/hub-workflow/references/execution.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "tdd",
+      "kind": "instruction",
+      "condition": "Important behavior or a testable regression",
+      "evidence": "skills/hub-workflow/references/execution.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "clean-code-guard",
+      "kind": "instruction",
+      "condition": "Non-trivial production code",
+      "evidence": "skills/hub-workflow/references/review.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "test-guard",
+      "kind": "instruction",
+      "condition": "Test changes",
+      "evidence": "skills/hub-workflow/references/review.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "docs-guard",
+      "kind": "instruction",
+      "condition": "Documentation changes",
+      "evidence": "skills/hub-workflow/references/review.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "wp-guard",
+      "kind": "instruction",
+      "condition": "WordPress APIs used",
+      "evidence": "skills/hub-workflow/references/review.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "woo-guard",
+      "kind": "instruction",
+      "condition": "WooCommerce APIs used",
+      "evidence": "skills/hub-workflow/references/review.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "debate-review",
+      "kind": "optional",
+      "condition": "User request or project review policy",
+      "evidence": "skills/hub-workflow/references/review.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "handoff",
+      "kind": "optional",
+      "condition": "Actual move to another session or environment",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "codex-delegate",
+      "target": "clean-code-guard",
+      "kind": "instruction",
+      "condition": "Review the relevant part of the diff",
+      "evidence": "skills/codex-delegate/references/review-and-land.md"
+    },
+    {
+      "source": "codex-delegate",
+      "target": "test-guard",
+      "kind": "instruction",
+      "condition": "Review the relevant part of the diff",
+      "evidence": "skills/codex-delegate/references/review-and-land.md"
+    },
+    {
+      "source": "codex-delegate",
+      "target": "docs-guard",
+      "kind": "instruction",
+      "condition": "Review the relevant part of the diff",
+      "evidence": "skills/codex-delegate/references/review-and-land.md"
+    },
+    {
+      "source": "delegate-setup",
+      "target": "codex-delegate",
+      "kind": "artifact",
+      "condition": "A lane chooses the implementer and its settings",
+      "evidence": "skills/delegate-setup/SKILL.md"
+    },
+    {
+      "source": "debate-review",
+      "target": "codex-delegate",
+      "kind": "optional",
+      "condition": "Pick an available relay that supports read-only",
+      "evidence": "skills/debate-review/SKILL.md"
+    },
+    {
+      "source": "claude-delegate",
+      "target": "clean-code-guard",
+      "kind": "instruction",
+      "condition": "Review the relevant part of the diff",
+      "evidence": "skills/claude-delegate/references/review-and-land.md"
+    },
+    {
+      "source": "claude-delegate",
+      "target": "test-guard",
+      "kind": "instruction",
+      "condition": "Review the relevant part of the diff",
+      "evidence": "skills/claude-delegate/references/review-and-land.md"
+    },
+    {
+      "source": "claude-delegate",
+      "target": "docs-guard",
+      "kind": "instruction",
+      "condition": "Review the relevant part of the diff",
+      "evidence": "skills/claude-delegate/references/review-and-land.md"
+    },
+    {
+      "source": "delegate-setup",
+      "target": "claude-delegate",
+      "kind": "artifact",
+      "condition": "A lane chooses the implementer and its settings",
+      "evidence": "skills/delegate-setup/SKILL.md"
+    },
+    {
+      "source": "debate-review",
+      "target": "claude-delegate",
+      "kind": "optional",
+      "condition": "Pick an available relay that supports read-only",
+      "evidence": "skills/debate-review/SKILL.md"
+    },
+    {
+      "source": "agy-delegate",
+      "target": "clean-code-guard",
+      "kind": "instruction",
+      "condition": "Review the relevant part of the diff",
+      "evidence": "skills/agy-delegate/references/review-and-land.md"
+    },
+    {
+      "source": "agy-delegate",
+      "target": "test-guard",
+      "kind": "instruction",
+      "condition": "Review the relevant part of the diff",
+      "evidence": "skills/agy-delegate/references/review-and-land.md"
+    },
+    {
+      "source": "agy-delegate",
+      "target": "docs-guard",
+      "kind": "instruction",
+      "condition": "Review the relevant part of the diff",
+      "evidence": "skills/agy-delegate/references/review-and-land.md"
+    },
+    {
+      "source": "delegate-setup",
+      "target": "agy-delegate",
+      "kind": "artifact",
+      "condition": "A lane chooses the implementer and its settings",
+      "evidence": "skills/delegate-setup/SKILL.md"
+    },
+    {
+      "source": "debate-review",
+      "target": "agy-delegate",
+      "kind": "optional",
+      "condition": "Pick an available relay that supports read-only",
+      "evidence": "skills/debate-review/SKILL.md"
+    },
+    {
+      "source": "debate-review",
+      "target": "delegate-setup",
+      "kind": "instruction",
+      "condition": "If reviewer lanes are not set up; setup needs permission",
+      "evidence": "skills/debate-review/SKILL.md"
+    },
+    {
+      "source": "to-spec",
+      "target": "debate-review",
+      "kind": "artifact",
+      "condition": "The spec reaches reviewers via --spec",
+      "evidence": "skills/debate-review/SKILL.md"
+    },
+    {
+      "source": "to-tickets",
+      "target": "debate-review",
+      "kind": "artifact",
+      "condition": "The ticket reaches reviewers via --spec",
+      "evidence": "skills/debate-review/SKILL.md"
+    },
+    {
+      "source": "research",
+      "target": "grill-me-code",
+      "kind": "artifact",
+      "condition": "Written results feed the decision",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "resolving-merge-conflicts",
+      "target": "hub-workflow",
+      "kind": "artifact",
+      "condition": "Re-verify the work after resolving an in-progress conflict",
+      "evidence": "skills/hub-workflow/references/execution.md"
+    },
+    {
+      "source": "writing-for-agents",
+      "target": "hub-workflow",
+      "kind": "artifact",
+      "condition": "Maintaining the route instructions, outside daily operation",
+      "evidence": "skills/writing-for-agents/SKILL.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "ui-engineering",
+      "kind": "instruction",
+      "condition": "Screen, form, flow or redesign",
+      "evidence": "skills/hub-workflow/SKILL.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "ui-guard",
+      "kind": "instruction",
+      "condition": "Change to a rendered UI",
+      "evidence": "skills/hub-workflow/references/review.md"
+    },
+    {
+      "source": "hub-workflow",
+      "target": "ui-e2e-tests",
+      "kind": "instruction",
+      "condition": "Important UI flow without a browser test",
+      "evidence": "skills/hub-workflow/references/review.md"
+    },
+    {
+      "source": "ui-engineering",
+      "target": "frontend-design",
+      "kind": "instruction",
+      "condition": "Visual direction for a new surface or redesign",
+      "evidence": "skills/ui-engineering/SKILL.md"
+    },
+    {
+      "source": "ui-engineering",
+      "target": "prototype",
+      "kind": "instruction",
+      "condition": "Unsettled layout or interaction choice",
+      "evidence": "skills/ui-engineering/SKILL.md"
+    },
+    {
+      "source": "ui-engineering",
+      "target": "ui-design-system",
+      "kind": "instruction",
+      "condition": "Tokens or shared components the change needs",
+      "evidence": "skills/ui-engineering/SKILL.md"
+    },
+    {
+      "source": "ui-engineering",
+      "target": "ui-guard",
+      "kind": "instruction",
+      "condition": "Evidence-based review after implementation",
+      "evidence": "skills/ui-engineering/SKILL.md"
+    },
+    {
+      "source": "ui-engineering",
+      "target": "ui-e2e-tests",
+      "kind": "instruction",
+      "condition": "Significant class or critical path",
+      "evidence": "skills/ui-engineering/SKILL.md"
+    },
+    {
+      "source": "ui-design-system",
+      "target": "ui-guard",
+      "kind": "instruction",
+      "condition": "Review the screens affected by tokens and components",
+      "evidence": "skills/ui-design-system/SKILL.md"
+    },
+    {
+      "source": "ui-guard",
+      "target": "ui-e2e-tests",
+      "kind": "instruction",
+      "condition": "Flow that needs a regression test",
+      "evidence": "skills/ui-guard/SKILL.md"
+    },
+    {
+      "source": "ui-guard",
+      "target": "ui-engineering",
+      "kind": "instruction",
+      "condition": "Unsettled design decision or specific correction",
+      "evidence": "skills/ui-guard/SKILL.md"
+    },
+    {
+      "source": "ui-e2e-tests",
+      "target": "test-guard",
+      "kind": "instruction",
+      "condition": "Review the test code",
+      "evidence": "skills/ui-e2e-tests/SKILL.md"
+    },
+    {
+      "source": "prototype",
+      "target": "ui-engineering",
+      "kind": "instruction",
+      "condition": "Promote a UI experiment result to production",
+      "evidence": "skills/prototype/SKILL.md"
+    },
+    {
+      "source": "to-spec",
+      "target": "ui-engineering",
+      "kind": "artifact",
+      "condition": "The UI brief inside the spec",
+      "evidence": "skills/to-spec/SKILL.md"
+    },
+    {
+      "source": "to-tickets",
+      "target": "ui-engineering",
+      "kind": "artifact",
+      "condition": "Screens, states and verification evidence in the ticket",
+      "evidence": "skills/to-tickets/SKILL.md"
+    },
+    {
+      "source": "setup-matt-pocock-skills",
+      "target": "ui-engineering",
+      "kind": "artifact",
+      "condition": "UI run and verification commands in workflow.md",
+      "evidence": "skills/setup-matt-pocock-skills/SKILL.md"
+    }
+  ],
+  "legend": {
+    "instruction": "Written link; applies when the condition holds",
+    "optional": "Optional, or per user authorization / project policy",
+    "artifact": "Link through a document or configuration"
+  },
+  "opportunities": [
+    "Schedule tickets with a real lock on claims",
+    "CI link that blocks merging until checks pass",
+    "Project policy that decides when an independent review is required",
+    "Wire browser tests into CI after each project approves"
+  ]
+}
